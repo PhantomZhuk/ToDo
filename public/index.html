@@ -15,9 +15,55 @@
     <link
         href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic"
         rel="stylesheet" />
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.css'
+        integrity='sha512-8BU3emz11z9iF75b10oPjjpamM4Mz23yQFQymbtwyPN3mNWHxpgeqyrYnkIUP6A8KyAj5k2p3MiYLtYqew7gIw=='
+        crossorigin='anonymous' />
 </head>
 
 <body>
+
+    <div class="wrap">
+        <header>
+            <div class="logo">
+                <i class="fa-regular fa-calendar"></i>
+                <span>7</span>
+            </div>
+            <nav>
+                <div id="taskList" class="selectedPage"><i class="fa-solid fa-list-check"></i>Task list</div>
+                <div id="calendar"><i class="fa-regular fa-calendar-days"></i>Calendar</div>
+            </nav>
+        </header>
+        <main>
+            <div class="controlContainer">
+                <button class="filterBtn"><i class="fa-solid fa-filter"></i></button>
+                <div class="filterContainer">
+                    <div class="importance-filters">
+                        <button id="all" class="selectedFilter">All</button>
+                        <button id="hard">Hard</button>
+                        <button id="medium">Medium</button>
+                        <button id="default">Default</button>
+                    </div>
+                    <div class="status-filters">
+                        <button id="fulfilled" class="selectedFilter">Fulfilled</button>
+                        <button id="unfulfilled">unfulfilled</button>
+                    </div>
+                </div>
+                <button id="addTask"><i class="fa-solid fa-plus"></i></button>
+            </div>
+            <div class="tasksContainer">
+                <div class="task">
+                    <h4></h4>
+                    <div class="btnContainer">
+                        <div id="checkBox" class=""><i class="fa-regular fa-square"></i></div>
+                        <!-- <i class="fa-regular fa-square-check"></i> -->
+                        <button id="deleteTask"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </main>
+    </div>
+
     <script src="./main.js"></script>
 </body>
 

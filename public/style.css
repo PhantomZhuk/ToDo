@@ -3,4 +3,189 @@
   margin: 0;
   box-sizing: border-box;
   font-family: "Montserrat";
+}
+
+.wrap {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  background-color: #273939;
+}
+.wrap header {
+  width: 15%;
+  min-height: 100vh;
+  background-color: #325a5a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+  box-shadow: 0 0 10px 0 #325a5a;
+}
+.wrap header .logo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 20px 20px 20px;
+}
+.wrap header .logo i {
+  font-size: 100px;
+}
+.wrap header .logo span {
+  position: absolute;
+  margin-top: 30px;
+  font-size: 40px;
+  font-weight: 600;
+}
+.wrap header nav {
+  width: 100%;
+  min-height: 75vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.wrap header nav div {
+  width: 98%;
+  height: 50px;
+  margin: 10px 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px 0 0 10px;
+}
+.wrap header nav div i {
+  margin-right: 5px;
+}
+.wrap header nav .selectedPage {
+  background-color: #273939;
+  box-shadow: 10px 0 10px 0 #273939;
+}
+.wrap main {
+  width: 85%;
+  min-height: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.wrap main .controlContainer {
+  width: 100%;
+  height: 10vh;
+  background-color: #415f5f;
+  border-radius: 10px;
+  box-shadow: 0 0 5px #415f5f;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+.wrap main .controlContainer .filterBtn {
+  padding: 20px;
+  border-radius: 10px;
+  border: none;
+  background-color: #478080;
+  box-shadow: 0 0 3px #333;
+  color: #fff;
+  cursor: pointer;
+}
+.wrap main .controlContainer .filterContainer {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background-color: #415f5f;
+  top: 14vh;
+  border-radius: 20px;
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+}
+.wrap main .controlContainer .filterContainer .importance-filters,
+.wrap main .controlContainer .filterContainer .status-filters {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+}
+.wrap main .controlContainer .filterContainer .importance-filters button,
+.wrap main .controlContainer .filterContainer .status-filters button {
+  width: 120px;
+  height: 50px;
+  border-radius: 10px;
+  border: none;
+  background-color: #415f5f;
+  box-shadow: 0 0 3px #333;
+  color: #fff;
+  cursor: pointer;
+  margin: 10px;
+  font-size: 16px;
+}
+.wrap main .controlContainer .filterContainer .importance-filters .selectedFilter,
+.wrap main .controlContainer .filterContainer .status-filters .selectedFilter {
+  background-color: #478080;
+  box-shadow: 0 0 3px #478080;
+}
+.wrap main .controlContainer #addTask {
+  padding: 20px 22px;
+  border-radius: 10px;
+  border: none;
+  background-color: #478080;
+  box-shadow: 0 0 3px #333;
+  color: #fff;
+  cursor: pointer;
+}
+.wrap main .tasksContainer {
+  width: 100%;
+  min-height: 80vh;
+  padding: 20px 0;
+}
+.wrap main .tasksContainer .task {
+  width: 300px;
+  min-height: 120px;
+  background-color: #415f5f;
+  border-radius: 10px;
+  box-shadow: 0 0 5px #415f5f;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  margin: 10px 0;
+  color: #fff;
+}
+.wrap main .tasksContainer .task h4 {
+  margin-bottom: 20px;
+}
+.wrap main .tasksContainer .task .btnContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.wrap main .tasksContainer .task .btnContainer input {
+  width: 30px;
+  height: 30px;
+}
+.wrap main .tasksContainer .task .btnContainer #checkBox {
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  cursor: pointer;
+}
+.wrap main .tasksContainer .task .btnContainer #deleteTask {
+  padding: 15px 17px;
+  border-radius: 10px;
+  border: none;
+  background-color: #990000;
+  box-shadow: 0 0 3px #333;
+  color: #fff;
+  cursor: pointer;
+}
+.wrap main .tasksContainer .task .btnContainer #deleteTask:hover {
+  background-color: #f00;
 }/*# sourceMappingURL=style.css.map */
