@@ -65,4 +65,12 @@ $(document).ready(function () {
         $(`#fulfilled`).removeClass(`selectedFilter`);
         $(`#unfulfilled`).addClass(`selectedFilter`);
     })
+
+    $(`#openAddTask`).click(() => {
+        $(`.addTaskContainer`).css(`display`, `flex`);
+    })
+
+    $(`#closeBtn`).click(() => {
+        $(`.addTaskContainer`).css(`display`, `none`);
+    })
 })

@@ -22,6 +22,18 @@
 
 <body>
 
+    <div class="addTaskContainer">
+        <div class="addTaskHeader"><i class="fa-solid fa-xmark" id="closeBtn"></i></div>
+        <div class="inputContainer">
+            <input type="text" id="title" placeholder="Enter task title">
+            <input type="date" id="date">
+            <input type="time" id="time">
+        </div>
+        <div class="btnContainer">
+            <button id="addTask">Add task</button>
+        </div>
+    </div>
+
     <div class="wrap">
         <header>
             <div class="logo">
@@ -49,12 +61,14 @@
                         <button id="unfulfilled">unfulfilled</button>
                     </div>
                 </div>
-                <button id="addTask"><i class="fa-solid fa-plus"></i></button>
+                <button id="openAddTask"><i class="fa-solid fa-plus"></i></button>
             </div>
             <div class="tasksContainer">
                 <!-- <div class="task">
-                    <h4></h4>
+                    <h4 class="taskTitle" id="titleH">Виконати домашнє заввдання</h4>
+                    <textarea class="taskTitle" id="titleTextarea"></textarea>
                     <div class="btnContainer">
+                        <i class="fa-solid fa-pen-to-square"></i>
                         <i class="fa-regular fa-square" id="checkBox"></i>
                         <i class="fa-regular fa-square-check"></i>
                         <button id="deleteTask"><i class="fa-solid fa-trash"></i></button>
