@@ -40,7 +40,7 @@
   align-items: center;
 }
 .addTaskContainer .inputContainer input {
-  width: 300px;
+  width: 95%;
   height: 50px;
   border: none;
   border-radius: 10px;
@@ -55,6 +55,20 @@
   color: #fff;
 }
 .addTaskContainer .inputContainer input::placeholder {
+  color: #fff;
+}
+.addTaskContainer .inputContainer .timeContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.addTaskContainer .inputContainer .timeContainer .withContainer,
+.addTaskContainer .inputContainer .timeContainer .toContainer {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   color: #fff;
 }
 .addTaskContainer .btnContainer {

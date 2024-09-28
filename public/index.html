@@ -27,7 +27,16 @@
         <div class="inputContainer">
             <input type="text" id="title" placeholder="Enter task title">
             <input type="date" id="date">
-            <input type="time" id="time">
+            <div class="timeContainer">
+                <div class="withContainer">
+                    <p for="withTime">With time</p>
+                    <input type="time" id="withTime">
+                </div>
+                <div class="toContainer">
+                    <p for="toTime">To time</p>
+                    <input type="time" id="toTime">
+                </div>
+            </div>
         </div>
         <div class="btnContainer">
             <button id="addTask">Add task</button>
