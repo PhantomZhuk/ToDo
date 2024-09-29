@@ -19,6 +19,9 @@ mongoose.connect(process.env.MONGODB_URI)
 
 const taskSchema = new mongoose.Schema({
     title: String,
+    date: Date,
+    withTime: String,
+    toTime: String,
     completed: Boolean
 })
 
@@ -28,6 +31,9 @@ app.post("/api/tasks", (req, res) => {
     console.log(req.body)
     const newTask = new Task ({
         title: req.body.title,
+        date: req.body.date,
+        withTime: req.body.withTime,
+        toTime: req.body.toTime,
         completed: req.body.completed
     })
 

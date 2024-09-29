@@ -5,6 +5,26 @@
   font-family: "Montserrat";
 }
 
+.notificationContainer {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.notificationContainer .notification {
+  color: #fff;
+  font-size: 18px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px #415f5f;
+  background-color: #415f5f;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+}
+
 .addTaskContainer {
   position: absolute;
   width: 400px;
@@ -229,43 +249,81 @@
   flex-wrap: wrap;
 }
 .wrap main .tasksContainer .task {
-  width: 100%;
-  height: 75px;
+  width: 400px;
+  height: 250px;
   background-color: #415f5f;
   border-radius: 10px;
   box-shadow: 0 0 5px #415f5f;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+  align-items: center;
   padding: 20px;
   margin: 10px;
   color: #fff;
 }
-.wrap main .tasksContainer .task #titleH {
-  width: 80%;
-  font-size: 16px;
+.wrap main .tasksContainer .task .titleContainer {
+  width: 100%;
+  height: 100px;
   display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
 }
-.wrap main .tasksContainer .task #titleTextarea {
-  width: 80%;
+.wrap main .tasksContainer .task .titleContainer .taskTitle {
+  width: 95%;
   background-color: transparent;
   outline: none;
   border: none;
   color: #fff;
   resize: none;
   font-size: 16px;
-  display: none;
+  display: flex;
 }
-.wrap main .tasksContainer .task .btnContainer {
-  width: 120px;
+.wrap main .tasksContainer .task .titleContainer i {
+  cursor: pointer;
+}
+.wrap main .tasksContainer .task .inputContainer {
+  width: 100%;
+  height: 75px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 10px 0;
+}
+.wrap main .tasksContainer .task .inputContainer input {
+  width: 130px;
+  height: 50px;
+  border: none;
+  border-radius: 10px;
+  margin-right: 10px;
+  font-size: 16px;
+  outline: none;
+  background-color: #478080;
+  color: #fff;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wrap main .tasksContainer .task .inputContainer input::-moz-placeholder {
+  color: #fff;
+}
+.wrap main .tasksContainer .task .inputContainer input::placeholder {
+  color: #fff;
+}
+.wrap main .tasksContainer .task .btnContainer {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
 }
 .wrap main .tasksContainer .task .btnContainer input {
   width: 30px;
   height: 30px;
 }
-.wrap main .tasksContainer .task .btnContainer #checkBox {
+.wrap main .tasksContainer .task .btnContainer .checkBox {
   width: 25px;
   height: 25px;
   display: flex;
@@ -274,7 +332,7 @@
   font-size: 22px;
   cursor: pointer;
 }
-.wrap main .tasksContainer .task .btnContainer #deleteTask {
+.wrap main .tasksContainer .task .btnContainer .deleteTask {
   padding: 15px 17px;
   border-radius: 10px;
   border: none;
@@ -283,6 +341,6 @@
   color: #fff;
   cursor: pointer;
 }
-.wrap main .tasksContainer .task .btnContainer #deleteTask:hover {
+.wrap main .tasksContainer .task .btnContainer .deleteTask:hover {
   background-color: #f00;
 }/*# sourceMappingURL=style.css.map */

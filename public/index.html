@@ -22,6 +22,8 @@
 
 <body>
 
+    <div class="notificationContainer"></div>
+
     <div class="addTaskContainer">
         <div class="addTaskHeader"><i class="fa-solid fa-xmark" id="closeBtn"></i></div>
         <div class="inputContainer">
@@ -29,11 +31,11 @@
             <input type="date" id="date">
             <div class="timeContainer">
                 <div class="withContainer">
-                    <p for="withTime">With time</p>
+                    <p>With time</p>
                     <input type="time" id="withTime">
                 </div>
                 <div class="toContainer">
-                    <p for="toTime">To time</p>
+                    <p>To time</p>
                     <input type="time" id="toTime">
                 </div>
             </div>
@@ -74,10 +76,16 @@
             </div>
             <div class="tasksContainer">
                 <!-- <div class="task">
-                    <h4 class="taskTitle" id="titleH">Виконати домашнє заввдання</h4>
-                    <textarea class="taskTitle" id="titleTextarea"></textarea>
-                    <div class="btnContainer">
+                    <div class="titleContainer">
+                        <textarea class="taskTitle" id="title" readonly>Виконати домашнє заввдання</textarea>
                         <i class="fa-solid fa-pen-to-square"></i>
+                    </div>
+                    <div class="inputContainer">
+                        <input type="date" id="dateTask" value="2022-01-01" readonly>
+                        <input type="time" id="withTimeTask" value="20:20" readonly>
+                        <input type="time" id="toTimeTask" value="20:20" readonly>
+                    </div>
+                    <div class="btnContainer">
                         <i class="fa-regular fa-square" id="checkBox"></i>
                         <i class="fa-regular fa-square-check"></i>
                         <button id="deleteTask"><i class="fa-solid fa-trash"></i></button>
