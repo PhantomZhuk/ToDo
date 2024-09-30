@@ -1,4 +1,12 @@
 $(document).ready(function () {
+    $(`#openAddTask`).click(() => {
+        $(`.addTaskContainer`).css(`display`, `flex`);
+    })
+
+    $(`#closeBtn`).click(() => {
+        $(`.addTaskContainer`).css(`display`, `none`);
+    })
+
     $(`#addTask`).click(() => {
         if ($(`#title`).val().length >= 3) {
             if ($(`#date`).val() && $('#date')[0].checkValidity()) {
