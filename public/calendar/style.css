@@ -1,0 +1,64 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat";
+}
+
+.wrap {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  background-color: #273939;
+}
+.wrap header {
+  width: 15%;
+  min-height: 100vh;
+  background-color: #325a5a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+  box-shadow: 0 0 10px 0 #325a5a;
+}
+.wrap header .logo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 20px 20px 20px;
+}
+.wrap header .logo i {
+  font-size: 100px;
+}
+.wrap header .logo span {
+  position: absolute;
+  margin-top: 30px;
+  font-size: 40px;
+  font-weight: 600;
+}
+.wrap header nav {
+  width: 100%;
+  min-height: 75vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.wrap header nav div {
+  width: 98%;
+  height: 50px;
+  margin: 10px 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px 0 0 10px;
+}
+.wrap header nav div i {
+  margin-right: 5px;
+}
+.wrap header nav .selectedPage {
+  background-color: #273939;
+  box-shadow: 10px 0 10px 0 #273939;
+}/*# sourceMappingURL=style.css.map */

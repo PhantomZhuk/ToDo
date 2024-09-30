@@ -1,4 +1,12 @@
 $(document).ready(function () {
+    $(`#taskList`).click(()=>{
+        window.location.href = '/';
+    })
+
+    $(`#calendar`).click(()=>{
+        window.location.href = '/calendar';
+    })
+
     $(`#openAddTask`).click(() => {
         $(`.addTaskContainer`).css(`display`, `flex`);
     })
