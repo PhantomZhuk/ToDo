@@ -7,6 +7,10 @@ $(document).ready(() => {
         window.location.href = '/calendar';
     })
 
+    $(`#closeBtn`).click(() => {
+        $(`.addTaskContainer`).css(`display`, `none`);
+    })
+
     let currentDate = new Date();
 
     function updatedCalendar() {
@@ -33,9 +37,9 @@ $(document).ready(() => {
                         <div class="day">
                             <div class="header">
                                 <div class="dayNumber">${dayCounter}</div>
-                                <div class="openAddtaskContainer" id="openAddtaskContainer${dayCounter}-${currentDate.getMonth() + 1}-${currentDate.getFullYear()}"><i class="fa-solid fa-plus" id="openAddtaskContainer${dayCounter}-${currentDate.getMonth() + 1}-${currentDate.getFullYear()}"></i></div>
+                                <div class="openAddtaskContainer" id="openAddtaskContainer${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${dayCounter}"><i class="fa-solid fa-plus" id="openAddtaskContainer${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${dayCounter}"></i></div>
                             </div>
-                            <div class="tasksContainer" id="tasksContainer${dayCounter}-${currentDate.getMonth() + 1}-${currentDate.getFullYear()}">
+                            <div class="tasksContainer" id="tasksContainer${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${dayCounter}">
                                 
                             </div>
                         </div>
@@ -71,12 +75,117 @@ $(document).ready(() => {
     })
 
     $('.calendarContainer').on('click', '.openAddtaskContainer', (e) => {
-        let ID = e.target.id.replace('openAddtaskContainer', ''); 
-        console.log(ID);
-    
-        $(`#tasksContainer${ID}`).append(`
-            <div class="task" id="task${ID}">Виконати роботу</div>
-        `);
+        let ID = e.target.id.replace('openAddtaskContainer', '');
+
+        $(`.addTaskContainer`).css(`display`, `flex`);
+        let [year, month, day] = ID.split('-');
+
+        if (day < 10) {
+            day = `0${day}`;
+        }
+
+        if (month < 10) {
+            month = `0${month}`;
+        }
+
+        let reversedDate = `${year}-${month}-${day}`;
+        $(`#date`).val(reversedDate);
     });
+
+    $(`#addTask`).click(() => {
+        if ($(`#title`).val().length >= 3) {
+            if ($(`#date`).val() && $('#date')[0].checkValidity()) {
+                if ($(`#withTime`).val() && $('#withTime')[0].checkValidity()) {
+                    if ($(`#toTime`).val() && $('#toTime')[0].checkValidity()) {
+
+                        if ($(`#toTime`).val() > $(`#withTime`).val()) {
+                            let data = {
+                                title: $(`#title`).val(),
+                                date: $(`#date`).val(),
+                                withTime: $(`#withTime`).val(),
+                                toTime: $(`#toTime`).val(),
+                                completed: false
+                            }
+
+                            $(`#title`).val(``);
+                            $(`#date`).val(``);
+                            $(`#withTime`).val(``);
+                            $(`#toTime`).val(``);
+
+                            axios.post(`/api/tasks`, data)
+                                .then(res => {
+                                    console.log(res.data)
+                                    getTasks();
+                                    $(`.addTaskContainer`).css(`display`, `none`);
+                                })
+                        } else {
+                            displayNotification('To time must be greater than with time');
+                        }
+                    } else {
+                        displayNotification('To time is required');
+                    }
+                } else {
+                    displayNotification('With time is required');
+                }
+            } else {
+                displayNotification('Date is required');
+            }
+        } else {
+            displayNotification('Title must be at least 3 characters');
+        }
+    });
+
+    let notificationTimeout;
+
+    function displayNotification(message) {
+
+        if (notificationTimeout) {
+            clearTimeout(notificationTimeout);
+        }
+
+        $(`.notificationContainer`).empty();
+
+        $(`.notificationContainer`).append(`
+        <div class="notification">
+            <p>${message}</p>
+        </div>
+    `);
+
+        notificationTimeout = setTimeout(() => {
+            $(`.notificationContainer`).empty();
+        }, 4000);
+    }
+
+    function getTasks() {
+        axios.get(`/api/tasks`)
+            .then(res => {
+                $('.tasksContainer').empty();
     
+                for (let el of res.data) {
+                    let dateString = el.date;
+                    let date = new Date(dateString);
+                    let formattedDate = date.toISOString().split('T')[0];
+    
+                    let [year, month, day] = formattedDate.split('-');
+                    month = parseInt(month, 10);
+                    day = parseInt(day, 10);
+    
+                    formattedDate = `${year}-${month}-${day}`;
+    
+                    if ($(`#tasksContainer${formattedDate}`).length) {
+                        $(`#tasksContainer${formattedDate}`).prepend(`
+                            <div class="task" id="task${el._id}">
+                                <p>${el.title}</p>
+                            </div>
+                        `);
+                    }
+                }
+            })
+            .catch(err => {
+                console.error('Error fetching tasks:', err);
+            });
+    }
+    
+
+    getTasks()
 })

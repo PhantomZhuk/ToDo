@@ -249,7 +249,7 @@
   flex-wrap: wrap;
 }
 .wrap main .tasksContainer .task {
-  width: 400px;
+  width: 380px;
   height: 250px;
   background-color: #415f5f;
   border-radius: 10px;
