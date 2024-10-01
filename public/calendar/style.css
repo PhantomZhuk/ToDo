@@ -61,4 +61,123 @@
 .wrap header nav .selectedPage {
   background-color: #273939;
   box-shadow: 10px 0 10px 0 #273939;
+}
+.wrap main {
+  width: 85%;
+  min-height: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.wrap main .controlContainer {
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.wrap main .controlContainer .arrowLeft,
+.wrap main .controlContainer .arrowRight {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: #325a5a;
+  box-shadow: 0 0 5px 0 #325a5a;
+  color: #fff;
+  font-size: 24px;
+  border: none;
+}
+.wrap main .controlContainer .currentDate {
+  font-size: 24px;
+  color: #fff;
+}
+.wrap main .dayContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  font-size: 20px;
+}
+.wrap main .dayContainer div {
+  width: 160px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.wrap main .calendarContainer {
+  width: 100%;
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.wrap main .calendarContainer .row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.wrap main .calendarContainer .row .day {
+  width: 160px;
+  min-height: 200px;
+  border-radius: 10px;
+  background-color: #325a5a;
+  box-shadow: 0 0 5px 0 #325a5a;
+  color: #fff;
+  margin: 5px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.wrap main .calendarContainer .row .day .header {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.wrap main .calendarContainer .row .day .header .openAddtaskContainer {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: #478080;
+  box-shadow: 0 0 5px 0 #478080;
+  color: #fff;
+  border: none;
+}
+.wrap main .calendarContainer .row .day .tasksContainer {
+  width: 100%;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.wrap main .calendarContainer .row .day .tasksContainer .task {
+  width: 100%;
+  min-height: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px 0;
+  background-color: #478080;
+  box-shadow: 0 0 5px 0 #478080;
+  border-radius: 5px;
+  color: #fff;
+  padding: 5px;
+}
+.wrap main .calendarContainer .row .selected {
+  background-color: #478080;
+  box-shadow: 0 0 5px 0 #478080;
 }/*# sourceMappingURL=style.css.map */
