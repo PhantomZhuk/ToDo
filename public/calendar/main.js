@@ -160,32 +160,220 @@ $(document).ready(() => {
         axios.get(`/api/tasks`)
             .then(res => {
                 $('.tasksContainer').empty();
-    
+
                 for (let el of res.data) {
                     let dateString = el.date;
                     let date = new Date(dateString);
                     let formattedDate = date.toISOString().split('T')[0];
-    
+
                     let [year, month, day] = formattedDate.split('-');
                     month = parseInt(month, 10);
                     day = parseInt(day, 10);
-    
+
                     formattedDate = `${year}-${month}-${day}`;
-    
-                    if ($(`#tasksContainer${formattedDate}`).length) {
-                        $(`#tasksContainer${formattedDate}`).prepend(`
-                            <div class="task" id="task${el._id}">
-                                <p>${el.title}</p>
-                            </div>
-                        `);
+                    if (el.completed == false) {
+                        if ($(`#tasksContainer${formattedDate}`).length) {
+                            $(`#tasksContainer${formattedDate}`).prepend(`
+                                <div class="task" id="task${el._id}">
+                                    <p>${el.title}</p>
+                                </div>
+                            `);
+                        }
+                    } else if (el.completed == true) {
+                        if ($(`#tasksContainer${formattedDate}`).length) {
+                            $(`#tasksContainer${formattedDate}`).append(`
+                                <div class="task" id="task${el._id}">
+                                    <p>${el.title}</p>
+                                </div>
+                            `);
+                        }
+                        $(`#task${el._id}`).css(`opacity`, `0.4`);
                     }
+
                 }
             })
             .catch(err => {
                 console.error('Error fetching tasks:', err);
             });
     }
-    
+
 
     getTasks()
+
+    function openEditContainer(id) {
+        axios.get(`/api/tasks`)
+            .then(res => {
+                $(`.editTaskContainer`).empty();
+                for (let el of res.data) {
+                    if (el._id == id) {
+                        let dateString = el.date;
+
+                        let date = new Date(dateString);
+                        let formattedDate = date.toISOString().split('T')[0];
+
+                        $(`.editTaskContainer`).css(`display`, `flex`);
+                        if (el.completed == false) {
+                            $(`.editTaskContainer`).append(`
+                                <div class="editContainer" id="editContainer${el._id}">
+                                <div class="header">
+                                    <i class="fa-solid fa-xmark" id="closeEditBtn"></i>
+                                </div>
+                                <div class="titleContainer">
+                                    <textarea class="taskTitle" id="taskTitle${el._id}" readonly>${el.title}</textarea>
+                                    <i class="fas fa-edit editTask" id="editTask${el._id}"></i>
+                                </div>
+                                <div class="inputContainer">
+                                    <input type="date" class="date" id="date${el._id}" value="${formattedDate}" readonly>
+                                    <input type="time" class="withTime" id="withTime${el._id}" value="${el.withTime}" readonly>
+                                    <input type="time"  class="toTime" id="toTime${el._id}" value="${el.toTime}" readonly>
+                                </div>
+                                <div class="btnContainer">
+                                    <i class="fa-regular fa-square checkBox" id="checkBox${el._id}"></i>
+                                    <i class="fas fa-trash deleteTask" id="deleteTask${el._id}"></i>
+                                </div>
+                            </div>
+                                    `)
+                        } else if (el.completed == true) {
+                            $(`.editTaskContainer`).append(`
+                                <div class="editContainer" id="editContainer${el._id}">
+                                <div class="header">
+                                    <i class="fa-solid fa-xmark" id="closeEditBtn"></i>
+                                </div>
+                                <div class="titleContainer">
+                                    <textarea class="taskTitle" id="taskTitle${el._id}" readonly>${el.title}</textarea>
+                                    <i class="fas fa-edit editTask" id="editTask${el._id}"></i>
+                                </div>
+                                <div class="inputContainer">
+                                    <input type="date" class="date" id="date${el._id}" value="${formattedDate}" readonly>
+                                    <input type="time" class="withTime" id="withTime${el._id}" value="${el.withTime}" readonly>
+                                    <input type="time"  class="toTime" id="toTime${el._id}" value="${el.toTime}" readonly>
+                                </div>
+                                <div class="btnContainer">
+                                    <i class="fa-regular fa-square-check checkBox" id="checkBox${el._id}"></i>
+                                    <i class="fas fa-trash deleteTask" id="deleteTask${el._id}"></i>
+                                </div>
+                            </div>
+                                    `)
+                        }
+                    }
+                }
+            })
+    }
+
+    $(`.tasksContainer`).on('click', '.task', (e) => {
+        let ID = e.target.id.replace('task', '');
+
+        openEditContainer(ID)
+    })
+
+    $(`.editTaskContainer`).on('click', '.deleteTask', (e) => {
+        let ID = e.target.id.replace('deleteTask', '')
+
+        axios.delete(`/app/tasks/${ID}`)
+            .then(res => {
+                console.log(res.data);
+                getTasks();
+                $(`.editTaskContainer`).css(`display`, `none`);
+            })
+            .catch(err => {
+                console.error(`Error deleting task:`, err);
+            });
+    });
+
+
+    $(`.editTaskContainer`).on('click', '.checkBox', (e) => {
+        let ID = e.target.id.replace('checkBox', '');
+
+        if ($(e.target).hasClass('fa-square')) {
+            let data = {
+                completed: true
+            };
+
+            axios.put(`/api/tasks/${ID}`, data)
+                .then(res => {
+                    $(e.target).removeClass('fa-square').addClass('fa-square-check');
+                    getTasks();
+                })
+                .catch(err => {
+                    console.error(`Error updating task:`, err);
+                });
+
+        } else if ($(e.target).hasClass('fa-square-check')) {
+            let data = {
+                completed: false
+            };
+
+            axios.put(`/api/tasks/${ID}`, data)
+                .then(res => {
+                    $(e.target).removeClass('fa-square-check').addClass('fa-square');
+                    getTasks();
+                })
+                .catch(err => {
+                    console.error(`Error updating task:`, err);
+                });
+        }
+    });
+
+    $(`.editTaskContainer`).on('click', '.editTask', (e) => {
+        let ID = e.target.id.replace('editTask', '');
+        console.log(ID);
+
+        if ($(`#editTask${ID}`).hasClass('fa-edit')) {
+
+            $(`#taskTitle${ID}`).removeAttr("readonly");
+            $(`#date${ID}`).removeAttr("readonly");
+            $(`#withTime${ID}`).removeAttr("readonly");
+            $(`#toTime${ID}`).removeAttr("readonly");
+            $(`#editTask${ID}`).addClass('fa-calendar-check').removeClass('fa-edit');
+
+        } else if ($(`#editTask${ID}`).hasClass('fa-calendar-check')) {
+
+            $(`#editTask${ID}`).removeClass('fa-calendar-check').addClass('fa-edit');
+            $(`#taskTitle${ID}`).attr("readonly", true);
+            $(`#date${ID}`).attr("readonly", true);
+            $(`#withTime${ID}`).attr("readonly", true);
+            $(`#toTime${ID}`).attr("readonly", true);
+
+            if ($(`#taskTitle${ID}`).val().length >= 3) {
+                if ($(`#date${ID}`).val() && $(`#date${ID}`)[0].checkValidity()) {
+                    if ($(`#withTime${ID}`).val() && $(`#withTime${ID}`)[0].checkValidity()) {
+                        if ($(`#toTime${ID}`).val() && $(`#toTime${ID}`)[0].checkValidity()) {
+
+                            if ($(`#toTime${ID}`).val() > $(`#withTime${ID}`).val()) {
+                                let data = {
+                                    title: $(`#taskTitle${ID}`).val(),
+                                    date: $(`#date${ID}`).val(),
+                                    withTime: $(`#withTime${ID}`).val(),
+                                    toTime: $(`#toTime${ID}`).val()
+                                }
+
+                                axios.put(`/api/tasks/${ID}`, data)
+                                    .then(res => {
+                                        getTasks();
+                                    })
+                                    .catch(err => {
+                                        console.error(`Error updating task:`, err);
+                                    });
+                            } else {
+                                displayNotification('To time must be greater than with time');
+                                getTasks();
+                            }
+                        } else {
+                            displayNotification('To time is required');
+                        }
+                    } else {
+                        displayNotification('With time is required');
+                    }
+                } else {
+                    displayNotification('Date is required');
+                }
+            } else {
+                displayNotification('Title must be at least 3 characters');
+            }
+        }
+    });
+
+    $(`.editTaskContainer`).on('click', '#closeEditBtn', (e) => {
+        $(`.editTaskContainer`).css(`display`, `none`);
+    })
 })
