@@ -5,6 +5,23 @@
   font-family: "Montserrat";
 }
 
+::-webkit-scrollbar {
+  width: 14px;
+  height: 14px;
+}
+
+::-webkit-scrollbar-track {
+  background: #5a6268;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #478080;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #478080;
+}
+
 .notificationContainer {
   position: absolute;
   right: 10px;
